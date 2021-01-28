@@ -1,22 +1,49 @@
-//to do create 00:00
-//to do create variable that will be the choosen
-//to do decrement this variable every sec
-// if 00:00 => return to first function choose
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 const Timer = () => {
-    const [counter, setCounter] = useState(900);
+    const time = 900;
+    const [seconds, setSeconds] = useState(time);
+    const [isActive, setIsActive] = useState(false);
 
-    const timer = () => {
-        setCounter(counter + 1);
-    };
+    function toggle() {
+        setIsActive(!isActive);
+    }
+    function reset() {
+        setSeconds(time);
+        setIsActive(false);
+    }
+
+    useEffect(() => {
+        let interval = null;
+        if (isActive) {
+            interval = setInterval(() => {
+                setSeconds(() => seconds - 1);
+            }, 1000);
+        } else if (!isActive && seconds !== 0) {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [isActive, seconds]);
 
     return (
         <div>
-            <span>{counter}</span>
-            <button onClick={timer} type={"button"}>
-                {"Start"}
-            </button>
+            <div>
+                <span>
+                    {seconds}
+                    {"Sec"}
+                </span>
+            </div>
+            <div>
+                <button
+                    type={"button"}
+                    className={isActive ? "active" : "inactive"}
+                    onClick={toggle}>
+                    {isActive ? "Pause" : "Start"}
+                </button>
+                <button type={"button"} onClick={reset}>
+                    {"Reset"}
+                </button>
+            </div>
         </div>
     );
 };

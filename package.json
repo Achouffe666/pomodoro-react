@@ -46,6 +46,7 @@
     "@babel/preset-react": "^7.12.10",
     "clock.js": "^1.1.7",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "time.js": "^0.0.1"
   }
 }

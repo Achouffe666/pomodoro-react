@@ -1,30 +1,25 @@
 // index.js
 import React from "react";
 import {render} from "react-dom";
-import Clock from "./clock.js";
+import {Clock} from "./clock.js";
+import Timer from "./timer.js";
 
-function Welcome({name, age, children}) {
+function Welcome({children}) {
     return (
         <div>
-            <h1>
-                {"Bonjour, "}
-                {name}
-            </h1>
-            <h6>
-                {"Vous avez "}
-                {age}
-                {" ans"}
-            </h6>
+            <h1>{"Bonjour, "}</h1>
+
             <p>{children}</p>
             <Clock />
+            <Timer />
         </div>
     );
 }
+
 render(
-    <Welcome name={"Jean"} age={34}>
-        {" "}
-        {"Bienvenue à vous!"}
-    </Welcome>,
+    <Welcome> {"Bienvenue à vous!"}</Welcome>,
+
     document.querySelector("#root"),
 );
+
 //npx eslint src --fix

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-let time = 5;
+const time = 900;
 
 const Timer = () => {
     const [seconds, setSeconds] = useState(time);
@@ -15,14 +15,25 @@ const Timer = () => {
         document.querySelector(".counter").classList.remove("finish");
     }
 
-    function increment() {
+    function incrementMin() {
         if (!isActive) {
-            setSeconds(time++);
+            setSeconds(t => t + 60);
         }
     }
-    function decrement() {
+    function decrementMin() {
         if (!isActive) {
-            setSeconds(time--);
+            setSeconds(t => t - 60);
+        }
+    }
+
+    function incrementSec() {
+        if (!isActive) {
+            setSeconds(t => t + 1);
+        }
+    }
+    function decrementSec() {
+        if (!isActive) {
+            setSeconds(t => t - 1);
         }
     }
     function stop() {
@@ -45,12 +56,25 @@ const Timer = () => {
         return () => clearInterval(interval);
     }, [isActive, seconds]);
 
+    const minutes =
+        Math.floor(seconds / 60) < 10
+            ? `0${Math.floor(seconds / 60)}`
+            : Math.floor(seconds / 60);
+    const secondes =
+        seconds - minutes * 60 < 10
+            ? `0${seconds - minutes * 60}`
+            : seconds - minutes * 60;
+
     return (
         <div className={"timer"}>
             <div>
                 <h6>{"Time remaining: "}</h6>
                 <div className={"counter"}>
-                    <span>{seconds}</span>
+                    <span>
+                        {minutes}
+                        {":"}
+                        {secondes}
+                    </span>
                 </div>
                 <div className={"buttons"}>
                     <button
@@ -64,11 +88,17 @@ const Timer = () => {
                     </button>
                 </div>
                 <div className={"buttons"}>
-                    <button type={"button"} onClick={increment}>
-                        {"+"}
+                    <button type={"button"} onClick={incrementMin}>
+                        {"Minutes +"}
                     </button>
-                    <button type={"button"} onClick={decrement}>
-                        {"-"}
+                    <button type={"button"} onClick={decrementMin}>
+                        {"Minutes -"}
+                    </button>
+                    <button type={"button"} onClick={incrementSec}>
+                        {"Seconds +"}
+                    </button>
+                    <button type={"button"} onClick={decrementSec}>
+                        {"Seconds -"}
                     </button>
                 </div>
             </div>

@@ -4,12 +4,9 @@ import {render} from "react-dom";
 import {Clock} from "./clock.js";
 import Timer from "./timer.js";
 
-function Welcome({children}) {
+function Welcome() {
     return (
-        <div>
-            <h1>{"Bonjour, "}</h1>
-
-            <p>{children}</p>
+        <div className={"main"}>
             <Clock />
             <Timer />
         </div>
@@ -17,7 +14,7 @@ function Welcome({children}) {
 }
 
 render(
-    <Welcome> {"Bienvenue à vous!"}</Welcome>,
+    <Welcome />,
 
     document.querySelector("#root"),
 );

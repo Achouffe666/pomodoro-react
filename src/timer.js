@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 
+let time = 5;
+
 const Timer = () => {
-    const time = 900;
     const [seconds, setSeconds] = useState(time);
     const [isActive, setIsActive] = useState(false);
 
@@ -11,11 +12,30 @@ const Timer = () => {
     function reset() {
         setSeconds(time);
         setIsActive(false);
+        document.querySelector(".counter").classList.remove("finish");
+    }
+
+    function increment() {
+        if (!isActive) {
+            setSeconds(time++);
+        }
+    }
+    function decrement() {
+        if (!isActive) {
+            setSeconds(time--);
+        }
+    }
+    function stop() {
+        if (seconds === 0) {
+            toggle();
+            document.querySelector(".counter").classList.add("finish");
+        }
     }
 
     useEffect(() => {
         let interval = null;
         if (isActive) {
+            stop();
             interval = setInterval(() => {
                 setSeconds(() => seconds - 1);
             }, 1000);
@@ -26,23 +46,31 @@ const Timer = () => {
     }, [isActive, seconds]);
 
     return (
-        <div>
+        <div className={"timer"}>
             <div>
-                <span>
-                    {seconds}
-                    {"Sec"}
-                </span>
-            </div>
-            <div>
-                <button
-                    type={"button"}
-                    className={isActive ? "active" : "inactive"}
-                    onClick={toggle}>
-                    {isActive ? "Pause" : "Start"}
-                </button>
-                <button type={"button"} onClick={reset}>
-                    {"Reset"}
-                </button>
+                <h6>{"Time remaining: "}</h6>
+                <div className={"counter"}>
+                    <span>{seconds}</span>
+                </div>
+                <div className={"buttons"}>
+                    <button
+                        type={"button"}
+                        className={isActive ? "active" : "inactive"}
+                        onClick={toggle}>
+                        {isActive ? "Pause" : "Start"}
+                    </button>
+                    <button type={"button"} onClick={reset}>
+                        {"Reset"}
+                    </button>
+                </div>
+                <div className={"buttons"}>
+                    <button type={"button"} onClick={increment}>
+                        {"+"}
+                    </button>
+                    <button type={"button"} onClick={decrement}>
+                        {"-"}
+                    </button>
+                </div>
             </div>
         </div>
     );

@@ -1,4 +1,67 @@
 * {
-  color: red; }
+  margin: 0;
+  padding: 0; }
+
+#root {
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 1000px;
+  width: 100%;
+  display: flex; }
+  #root button {
+    font-size: larger; }
+  #root .main {
+    width: 100%; }
+  #root .currentTime {
+    background-color: lightblue;
+    float: right;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-right: 5%; }
+  #root .timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px; }
+    #root .timer h6 {
+      text-align: center;
+      font-weight: 900;
+      font-size: 25px;
+      margin-bottom: 10px;
+      text-decoration: underline; }
+    #root .timer .counter {
+      background-color: blue;
+      font-size: x-large;
+      font-weight: bolder;
+      color: white;
+      padding: 5px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      border-radius: 5px;
+      text-align: center; }
+@keyframes finish {
+  0% {
+    color: red; }
+  50% {
+    color: transparent; }
+  100% {
+    color: red; } }
+    #root .timer .finish {
+      animation-name: finish;
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite; }
+    #root .timer .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px;
+      font-size: 20px; }
+      #root .timer .buttons button {
+        min-width: 100px;
+        margin-left: 5px;
+        margin-right: 5px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -4,7 +4,7 @@ import {render} from "react-dom";
 import {Clock} from "./clock.js";
 import Timer from "./timer.js";
 
-function Welcome() {
+function Main() {
     return (
         <div className={"main"}>
             <Clock />
@@ -14,7 +14,7 @@ function Welcome() {
 }
 
 render(
-    <Welcome />,
+    <Main />,
 
     document.querySelector("#root"),
 );

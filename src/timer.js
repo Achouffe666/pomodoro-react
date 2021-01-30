@@ -21,7 +21,7 @@ const Timer = () => {
         }
     }
     function decrementMin() {
-        if (!isActive) {
+        if (!isActive && seconds > 59) {
             setSeconds(t => t - 60);
         }
     }
@@ -32,7 +32,7 @@ const Timer = () => {
         }
     }
     function decrementSec() {
-        if (!isActive) {
+        if (!isActive && seconds > 0) {
             setSeconds(t => t - 1);
         }
     }

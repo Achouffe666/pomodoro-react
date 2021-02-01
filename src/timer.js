@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from "react";
+import Ring from "./sound/bell.mp3";
 
 const time = 630;
 
 const Timer = () => {
+    const ring = new Audio(Ring);
     const [seconds, setSeconds] = useState(time);
     const [isActive, setIsActive] = useState(false);
 
@@ -40,6 +42,7 @@ const Timer = () => {
         if (seconds === 0) {
             toggle();
             document.querySelector(".counter").classList.add("finish");
+            ring.play();
         }
     }
 

@@ -68,6 +68,8 @@ const Timer = () => {
             ? `0${seconds - minutes * 60}`
             : seconds - minutes * 60;
 
+    document.title = `${minutes}:${secondes} - Pomodoro`;
+
     return (
         <div className={"timer"}>
             <div>
